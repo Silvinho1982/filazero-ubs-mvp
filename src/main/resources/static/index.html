@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fila Zero - UBS</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">Fila <span>Zero</span> <small>UBS</small></div>
+    <button id="logoutBtn" class="ghost hidden">Sair</button>
+  </header>
+
+  <main class="app-shell">
+    <section id="screen-login" class="screen active card">
+      <div class="logo-mark">+</div>
+      <h1>Bem-vindo ao Fila Zero</h1>
+      <p class="muted">Agende seu atendimento na UBS sem enfrentar fila.</p>
+      <form id="loginForm" class="form">
+        <label>CPF
+          <input id="loginCpf" inputmode="numeric" placeholder="Digite seu CPF" required />
+        </label>
+        <label>Senha
+          <input id="loginPassword" type="password" placeholder="Digite sua senha" required />
+        </label>
+        <button class="primary" type="submit">Entrar</button>
+      </form>
+      <div class="demo">Demonstração: <strong>12345678900</strong> / <strong>123456</strong></div>
+      <div class="link-row">
+        <button class="link" data-target="screen-recovery">Esqueci minha senha</button>
+        <button class="link" data-target="screen-register">Ainda não tenho cadastro</button>
+      </div>
+    </section>
+
+    <section id="screen-register" class="screen card">
+      <h2>Cadastro</h2>
+      <p class="muted">Crie seu acesso para agendar consultas.</p>
+      <form id="registerForm" class="form">
+        <label>Nome completo<input id="regName" required /></label>
+        <label>CPF<input id="regCpf" required /></label>
+        <label>E-mail<input id="regEmail" type="email" required /></label>
+        <label>Celular<input id="regPhone" required /></label>
+        <label>Senha<input id="regPassword" type="password" minlength="6" required /></label>
+        <button class="primary" type="submit">Criar cadastro</button>
+      </form>
+      <button class="link back" data-target="screen-login">Voltar para login</button>
+    </section>
+
+    <section id="screen-recovery" class="screen card">
+      <h2>Recuperar acesso</h2>
+      <p class="muted">Escolha onde deseja receber as instruções.</p>
+      <form id="recoveryForm" class="form">
+        <label>CPF, e-mail ou celular<input id="recoveryContact" required /></label>
+        <label>Canal
+          <select id="recoveryChannel"><option value="email">E-mail</option><option value="sms">Celular</option></select>
+        </label>
+        <button class="primary" type="submit">Enviar instruções</button>
+      </form>
+      <button class="link back" data-target="screen-login">Voltar para login</button>
+    </section>
+
+    <section id="screen-welcome" class="screen card center">
+      <div class="avatar">👋</div>
+      <h1>Olá, <span id="welcomeName">Usuário</span>!</h1>
+      <p class="muted">Vamos encontrar um atendimento para você.</p>
+      <button class="primary" data-target="screen-ubs">Agendar atendimento</button>
+    </section>
+
+    <section id="screen-ubs" class="screen card">
+      <div class="step">1 de 3</div>
+      <h2>Escolha sua UBS</h2>
+      <p class="muted">Selecione uma das 33 unidades disponíveis.</p>
+      <label>UBS
+        <select id="ubsSelect" required></select>
+      </label>
+      <button class="primary wide" id="goSpecialty">Continuar</button>
+    </section>
+
+    <section id="screen-specialty" class="screen card">
+      <div class="step">2 de 3</div>
+      <h2>Escolha a especialidade</h2>
+      <p class="muted">Selecione o tipo de atendimento.</p>
+      <div id="specialtyGrid" class="choice-grid"></div>
+      <button class="primary wide" id="goSchedule">Ver horários</button>
+    </section>
+
+    <section id="screen-schedule" class="screen card">
+      <div class="step">3 de 3</div>
+      <h2>Agendamento</h2>
+      <p id="selectionSummary" class="summary"></p>
+      <form id="appointmentForm" class="form">
+        <label>Data<input id="appointmentDate" type="date" required /></label>
+        <label>Horário
+          <select id="appointmentTime"><option>08:00</option><option>09:00</option><option>10:00</option><option>14:00</option><option>15:00</option><option>16:00</option></select>
+        </label>
+        <button class="primary" type="submit">Confirmar agendamento</button>
+      </form>
+    </section>
+
+    <section id="screen-confirmation" class="screen card center">
+      <div class="success">✓</div>
+      <h2>Agendamento confirmado!</h2>
+      <div id="confirmationDetails" class="confirmation-box"></div>
+      <button class="primary" data-target="screen-welcome">Voltar ao início</button>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <script src="/app.js"></script>
+</body>
+</html>
